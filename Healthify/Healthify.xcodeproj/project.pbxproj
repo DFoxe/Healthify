@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652F0B6C2C5AB75200E40BFC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0B6B2C5AB75200E40BFC /* HomeView.swift */; };
+		652F0B6E2C5AB79E00E40BFC /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0B6D2C5AB79E00E40BFC /* HomePageView.swift */; };
+		652F0B702C5AB7D500E40BFC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0B6F2C5AB7D500E40BFC /* Onboarding.swift */; };
+		652F0B722C5AB7F700E40BFC /* MedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0B712C5AB7F700E40BFC /* MedicationView.swift */; };
+		652F0B742C5AB82D00E40BFC /* Appointments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0B732C5AB82D00E40BFC /* Appointments.swift */; };
+		652F0BAF2C63FA7700E40BFC /* AllModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652F0BAE2C63FA7700E40BFC /* AllModels.swift */; };
 		65342FE42C5196270066175D /* HealthifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65342FE32C5196270066175D /* HealthifyApp.swift */; };
 		65342FE62C5196270066175D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65342FE52C5196270066175D /* ContentView.swift */; };
-		65342FE82C5196270066175D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65342FE72C5196270066175D /* Item.swift */; };
 		65342FEA2C5196280066175D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65342FE92C5196280066175D /* Assets.xcassets */; };
 		65342FED2C5196280066175D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65342FEC2C5196280066175D /* Preview Assets.xcassets */; };
 		65342FF72C5196280066175D /* HealthifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65342FF62C5196280066175D /* HealthifyTests.swift */; };
@@ -35,10 +40,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		652F0B6B2C5AB75200E40BFC /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		652F0B6D2C5AB79E00E40BFC /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
+		652F0B6F2C5AB7D500E40BFC /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		652F0B712C5AB7F700E40BFC /* MedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationView.swift; sourceTree = "<group>"; };
+		652F0B732C5AB82D00E40BFC /* Appointments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointments.swift; sourceTree = "<group>"; };
+		652F0BAE2C63FA7700E40BFC /* AllModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllModels.swift; sourceTree = "<group>"; };
 		65342FE02C5196270066175D /* Healthify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Healthify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65342FE32C5196270066175D /* HealthifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyApp.swift; sourceTree = "<group>"; };
 		65342FE52C5196270066175D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		65342FE72C5196270066175D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		65342FE92C5196280066175D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65342FEC2C5196280066175D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		65342FF22C5196280066175D /* HealthifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		652F0BAD2C63FA5E00E40BFC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				652F0BAE2C63FA7700E40BFC /* AllModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		65342FD72C5196270066175D = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +114,14 @@
 		65342FE22C5196270066175D /* Healthify */ = {
 			isa = PBXGroup;
 			children = (
+				652F0BAD2C63FA5E00E40BFC /* Models */,
 				65342FE32C5196270066175D /* HealthifyApp.swift */,
 				65342FE52C5196270066175D /* ContentView.swift */,
-				65342FE72C5196270066175D /* Item.swift */,
+				652F0B6B2C5AB75200E40BFC /* HomeView.swift */,
+				652F0B6D2C5AB79E00E40BFC /* HomePageView.swift */,
+				652F0B6F2C5AB7D500E40BFC /* Onboarding.swift */,
+				652F0B712C5AB7F700E40BFC /* MedicationView.swift */,
+				652F0B732C5AB82D00E40BFC /* Appointments.swift */,
 				65342FE92C5196280066175D /* Assets.xcassets */,
 				65342FEB2C5196280066175D /* Preview Content */,
 			);
@@ -261,8 +284,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				65342FE62C5196270066175D /* ContentView.swift in Sources */,
-				65342FE82C5196270066175D /* Item.swift in Sources */,
+				652F0B722C5AB7F700E40BFC /* MedicationView.swift in Sources */,
+				652F0B6C2C5AB75200E40BFC /* HomeView.swift in Sources */,
+				652F0B702C5AB7D500E40BFC /* Onboarding.swift in Sources */,
 				65342FE42C5196270066175D /* HealthifyApp.swift in Sources */,
+				652F0B6E2C5AB79E00E40BFC /* HomePageView.swift in Sources */,
+				652F0B742C5AB82D00E40BFC /* Appointments.swift in Sources */,
+				652F0BAF2C63FA7700E40BFC /* AllModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
