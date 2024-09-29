@@ -18,7 +18,7 @@ struct HomePageView: View {
                 VStack(alignment: .leading, spacing: 20) {
                     ActivityTrackingSection()
                     MedicationsSection()
-                    AppointmentsSection()
+                    /*AppointmentsSection()*/
                 }
                 .padding()
             }
@@ -68,7 +68,7 @@ struct MedicationRow: View {
     }
 }
 
-struct AppointmentsSection: View {
+/* struct AppointmentsSection: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("Appointments")
@@ -81,6 +81,7 @@ struct AppointmentsSection: View {
         .cornerRadius(10)
     }
 }
+ */
 
 struct AppointmentRow: View {
     var time: String

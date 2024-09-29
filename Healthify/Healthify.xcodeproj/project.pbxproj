@@ -20,6 +20,7 @@
 		65342FF72C5196280066175D /* HealthifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65342FF62C5196280066175D /* HealthifyTests.swift */; };
 		653430012C5196280066175D /* HealthifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653430002C5196280066175D /* HealthifyUITests.swift */; };
 		653430032C5196280066175D /* HealthifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */; };
+		65DEB66B2CA9B2590067C430 /* TriageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66A2CA9B2590067C430 /* TriageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		65342FFC2C5196280066175D /* HealthifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HealthifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		653430002C5196280066175D /* HealthifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyUITests.swift; sourceTree = "<group>"; };
 		653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		65DEB66A2CA9B2590067C430 /* TriageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				652F0B6F2C5AB7D500E40BFC /* Onboarding.swift */,
 				652F0B712C5AB7F700E40BFC /* MedicationView.swift */,
 				652F0B732C5AB82D00E40BFC /* Appointments.swift */,
+				65DEB66A2CA9B2590067C430 /* TriageView.swift */,
 				65342FE92C5196280066175D /* Assets.xcassets */,
 				65342FEB2C5196280066175D /* Preview Content */,
 			);
@@ -289,6 +292,7 @@
 				652F0B702C5AB7D500E40BFC /* Onboarding.swift in Sources */,
 				65342FE42C5196270066175D /* HealthifyApp.swift in Sources */,
 				652F0B6E2C5AB79E00E40BFC /* HomePageView.swift in Sources */,
+				65DEB66B2CA9B2590067C430 /* TriageView.swift in Sources */,
 				652F0B742C5AB82D00E40BFC /* Appointments.swift in Sources */,
 				652F0BAF2C63FA7700E40BFC /* AllModels.swift in Sources */,
 			);

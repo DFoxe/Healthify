@@ -20,11 +20,9 @@ struct HomeView: View {
                         Text("Dashboard")
                     }
                 
-                // Additional tabs for navigation
-                Text("Activity Tracking")
+                TriageView()
                     .tabItem {
-                        Image(systemName: "figure.walk")
-                        Text("Activity")
+                        Label("Diagnostic", systemImage: "heart.text.square")
                     }
                 
                 MedicationView()
@@ -33,11 +31,11 @@ struct HomeView: View {
                         Text("Medication")
                     }
                 
-                AppointmentView()
+                /*AppointmentView()
                     .tabItem {
                         Image(systemName: "calendar")
                         Text("Appointments")
-                    }
+                         }*/
                 
                 Text("Profile")
                     .tabItem {
