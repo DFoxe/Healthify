@@ -32,3 +32,21 @@ struct triage{
     var serious:[String]
 }
 
+struct Evidence: Codable{
+    var id: String
+    var name: String
+    var choice_id: String
+    var source: String
+}
+
+struct Mention: Codable {
+    var id: String
+    var name: String
+    var choice_id: String
+}
+
+struct DiagnosisAPIResponse: Codable {
+    var mentions: [Mention]
+    var obvious: Bool
+}
+

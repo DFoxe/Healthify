@@ -21,6 +21,7 @@
 		653430012C5196280066175D /* HealthifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653430002C5196280066175D /* HealthifyUITests.swift */; };
 		653430032C5196280066175D /* HealthifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */; };
 		65DEB66B2CA9B2590067C430 /* TriageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66A2CA9B2590067C430 /* TriageView.swift */; };
+		65DEB66E2CB177730067C430 /* TriageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66D2CB177730067C430 /* TriageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		653430002C5196280066175D /* HealthifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyUITests.swift; sourceTree = "<group>"; };
 		653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		65DEB66A2CA9B2590067C430 /* TriageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageView.swift; sourceTree = "<group>"; };
+		65DEB66D2CB177730067C430 /* TriageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 		65342FE22C5196270066175D /* Healthify */ = {
 			isa = PBXGroup;
 			children = (
+				65DEB66C2CB1774C0067C430 /* ViewModels */,
 				652F0BAD2C63FA5E00E40BFC /* Models */,
 				65342FE32C5196270066175D /* HealthifyApp.swift */,
 				65342FE52C5196270066175D /* ContentView.swift */,
@@ -154,6 +157,14 @@
 				653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */,
 			);
 			path = HealthifyUITests;
+			sourceTree = "<group>";
+		};
+		65DEB66C2CB1774C0067C430 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				65DEB66D2CB177730067C430 /* TriageViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,6 +303,7 @@
 				652F0B702C5AB7D500E40BFC /* Onboarding.swift in Sources */,
 				65342FE42C5196270066175D /* HealthifyApp.swift in Sources */,
 				652F0B6E2C5AB79E00E40BFC /* HomePageView.swift in Sources */,
+				65DEB66E2CB177730067C430 /* TriageViewModel.swift in Sources */,
 				65DEB66B2CA9B2590067C430 /* TriageView.swift in Sources */,
 				652F0B742C5AB82D00E40BFC /* Appointments.swift in Sources */,
 				652F0BAF2C63FA7700E40BFC /* AllModels.swift in Sources */,
