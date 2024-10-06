@@ -30,19 +30,30 @@ struct ActivityTrackingSection: View {
             VStack(alignment: .leading) {
                 Text("Activity Tracking")
                     .font(.headline)
-                Text("Steps: 4,500 / 10,000")
-                Text("Heart Rate: 78 BPM")
-            }
-            .padding()
-            .background(Color.green.opacity(0.1))
-            .cornerRadius(10)
-            .frame(width:500)
+                    .fontWeight(.bold)
+                HStack{
+                    Text("Steps:")
+                    Spacer()
+                    Text("4,500 / 10,000")
+                        .fontWeight(.bold)
+                }
+                HStack{
+                    Text("Heart Rate:")
+                    Spacer()
+                    Text("78 BPM")
+                        .fontWeight(.bold)
+                         }
+                    }
+                    .padding()
+                    .background(Color.green.opacity(0.1))
+                    .cornerRadius(10)
+                    .frame(maxWidth: .infinity)
     }
 }
 struct MedicationsSection: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("Medications")
+            VStack(alignment: .leading) {
+                Text("Medications")
                 .font(.headline)
             MedicationRow(time: "8:00 AM", medication: "Aspirin 81mg")
             MedicationRow(time: "12:00 PM", medication: "Lisinopril 10mg")
@@ -51,6 +62,7 @@ struct MedicationsSection: View {
         .padding()
         .background(Color.orange.opacity(0.1))
         .cornerRadius(10)
+        .frame(maxWidth: .infinity)
     }
 }
 

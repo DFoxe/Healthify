@@ -16,9 +16,9 @@ class TriageViewModel: ObservableObject {
     @Published var errorMessage: String? = nil
     @Published var userID: UUID? = nil
     @Published var triageStep: Int = 0
-    @Published var age: Int? = nil
-    @Published var sex: String? = nil
-    @Published var desc: String? = nil
+    @Published var age: String = ""
+    @Published var sex: String = ""
+    @Published var desc: String = "ex: The right side of my head hurts"
     @Published var evidence: [Evidence]? = nil
 
     var cancellables = Set<AnyCancellable>()
@@ -48,9 +48,9 @@ class TriageViewModel: ObservableObject {
 
 
            let body: [String: Any] = [
-             "text": self.desc!,
+            "text": self.desc,
              "age": ["value": self.age],
-             "sex": self.sex!,
+            "sex": self.sex,
              "evidence": evidenceDict
           ]
 
@@ -83,10 +83,7 @@ class TriageViewModel: ObservableObject {
     // send over age, sex, symptom description MODIFY TO ACTUALLY TAKE VALUES
     func beginTriage() {
         self.isLoading = true
-        self.age = 28
-        self.sex = "male"
-        self.desc = "My head hurts and I'm seeing colors"
-
+        
         let url = URL(string: "https://api.infermedica.com/v3/parse")!
            var request = URLRequest(url: url)
            request.httpMethod = "POST"
@@ -99,9 +96,9 @@ class TriageViewModel: ObservableObject {
 
            // Create the JSON body
            let body: [String: Any] = [
-            "text": self.desc!,
-            "age": ["value": self.age],
-            "sex": self.sex!
+            "text": desc,
+            "age": ["value": age],
+            "sex": sex
            ]
 
            // Convert body to JSON data

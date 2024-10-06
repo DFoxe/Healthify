@@ -11,6 +11,10 @@ import Foundation
 struct TriageView: View {
     @StateObject private var triageViewModel = TriageViewModel()
 
+    @State private var selectedSex: String? = nil
+    @State private var ageInput: String = ""
+
+
     var body: some View {
         VStack(spacing: 20 ) {
 
@@ -52,11 +56,42 @@ struct TriageView: View {
             }
 
             else if triageViewModel.triageStep == 1 && (triageViewModel.userID != nil) {
-                Text("Now more info here")
-                Text("Default vals: \n\nMale \n28 \n'My stomach hurts'")
-
+                // Age Input
+                TextField("Enter your age", text: $triageViewModel.age)
+                    .keyboardType(.numberPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+                
+                // Sex Picker
+                Picker("Select your sex", selection: $triageViewModel.sex) {
+                    Text("Male").tag("male" as String?)
+                    Text("Female").tag("female" as String?)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                // Description Box
+                Text("Describe your symptoms:")
+                    .font(.headline)
+                    .padding(.top)
+                
+                TextEditor(text: $triageViewModel.desc)
+                    .frame(height: 150)
+                    .padding()
+                    .border(Color.gray, width:1)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+                
+                //Error handling for empty fields
+                if selectedSex == nil || ageInput.isEmpty {
+                    Text("Please fill in all fields")
+                        .foregroundColor(.red)
+                }
+                
+                // Start triage button
                 Button(action: {
-                    triageViewModel.beginTriage()
+                    //Set the age and sex in the ViewModel
+                        triageViewModel.beginTriage()
                 }) {
                     Text(triageViewModel.isLoading ? "Gathering symptoms..." : "Start triage")
                         .frame(maxWidth: .infinity)
@@ -72,14 +107,13 @@ struct TriageView: View {
             else if triageViewModel.triageStep == 2 && (triageViewModel.userID != nil) {
                 Text("Profile")
                 Text("age: \(triageViewModel.age) sex: \(triageViewModel.sex)")
-
-                Text("\(triageViewModel.evidence)")
-
+                
+                if let evidence = triageViewModel.evidence {
+                    Text("Evidence: \(evidence)")
+                } else{
+                    Text("No evidence collected")
+                }
             }
-
-
-
-
             Spacer()
         }
     }
