@@ -17,7 +17,7 @@ class TriageViewModel: ObservableObject {
     @Published var userID: UUID? = nil
     @Published var triageStep: Int = 0
     @Published var age: String = ""
-    @Published var sex: String = ""
+    @Published var sex: String? = "male"
     @Published var desc: String = "ex: The right side of my head hurts"
     @Published var evidence: [Evidence]? = nil
 
@@ -97,7 +97,7 @@ class TriageViewModel: ObservableObject {
            // Create the JSON body
            let body: [String: Any] = [
             "text": desc,
-            "age": ["value": age],
+            "age": ["value": Int(self.age)],
             "sex": sex
            ]
 
@@ -120,6 +120,12 @@ class TriageViewModel: ObservableObject {
                // Print the response
                do {
                      print(data)
+                   if let jsonString = String(data: data, encoding: .utf8) {
+                                             print(jsonString) // This will print the JSON as a string
+                                         } else {
+                                             print("Failed to convert data to string.")
+                                         }
+
                      let response = try JSONDecoder().decode(DiagnosisAPIResponse.self, from: data)
                      print(response)
                      let evidenceArray: [Evidence] = response.mentions.map { mention in
@@ -131,6 +137,12 @@ class TriageViewModel: ObservableObject {
                    self.continueDiagnosis()
                     self.triageStep = 2
                  } catch {
+                     if let jsonString = String(data: data, encoding: .utf8) {
+                                                print(jsonString) // This will print the JSON as a string
+                                            } else {
+                                                print("Failed to convert data to string.")
+                                            }
+
                      print("Error decoding JSON: \(error)")
                  }
            }

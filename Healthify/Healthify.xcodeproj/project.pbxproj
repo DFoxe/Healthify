@@ -22,6 +22,7 @@
 		653430032C5196280066175D /* HealthifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */; };
 		65DEB66B2CA9B2590067C430 /* TriageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66A2CA9B2590067C430 /* TriageView.swift */; };
 		65DEB66E2CB177730067C430 /* TriageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66D2CB177730067C430 /* TriageViewModel.swift */; };
+		65DEB6702CBC2A800067C430 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEB66F2CBC2A800067C430 /* MapView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		653430022C5196280066175D /* HealthifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		65DEB66A2CA9B2590067C430 /* TriageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageView.swift; sourceTree = "<group>"; };
 		65DEB66D2CB177730067C430 /* TriageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriageViewModel.swift; sourceTree = "<group>"; };
+		65DEB66F2CBC2A800067C430 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 				652F0B712C5AB7F700E40BFC /* MedicationView.swift */,
 				652F0B732C5AB82D00E40BFC /* Appointments.swift */,
 				65DEB66A2CA9B2590067C430 /* TriageView.swift */,
+				65DEB66F2CBC2A800067C430 /* MapView.swift */,
 				65342FE92C5196280066175D /* Assets.xcassets */,
 				65342FEB2C5196280066175D /* Preview Content */,
 			);
@@ -300,6 +303,7 @@
 				65342FE62C5196270066175D /* ContentView.swift in Sources */,
 				652F0B722C5AB7F700E40BFC /* MedicationView.swift in Sources */,
 				652F0B6C2C5AB75200E40BFC /* HomeView.swift in Sources */,
+				65DEB6702CBC2A800067C430 /* MapView.swift in Sources */,
 				652F0B702C5AB7D500E40BFC /* Onboarding.swift in Sources */,
 				65342FE42C5196270066175D /* HealthifyApp.swift in Sources */,
 				652F0B6E2C5AB79E00E40BFC /* HomePageView.swift in Sources */,

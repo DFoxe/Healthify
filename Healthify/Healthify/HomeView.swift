@@ -37,10 +37,10 @@ struct HomeView: View {
                         Text("Appointments")
                          }*/
                 
-                Text("Profile")
+                MapView()
                     .tabItem {
                         Image(systemName: "person.crop.circle.fill")
-                        Text("profile")
+                        Text("Hospital Locations")
                     }
             }
             
