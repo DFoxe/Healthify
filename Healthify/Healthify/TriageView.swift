@@ -10,134 +10,184 @@ import Foundation
 
 struct TriageView: View {
     @StateObject private var triageViewModel = TriageViewModel()
-    
+
     @State private var selectedSex: String? = nil
     @State private var ageInput: String = ""
-    
-    
+
+
     var body: some View {
-        VStack(spacing: 40 ) {
-            
-            //Logo
-            Image(systemName: "heart.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 150, height: 150)
-                .foregroundColor(Color(red: 0.97, green: 0.42, blue: 0.30))
-                .padding(.bottom, 30)
-            
+        VStack(spacing: 20 ) {
+
             //1: get intial information
             if triageViewModel.triageStep == 0 {
-                VStack(spacing: 30) {
-                    
-                    
-                    // Email input
-                    HStack {
-                        Image(systemName: "envelope.fill").foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.33))
-                        TextField("Enter your email", text: $triageViewModel.email)
-                            .padding()
-                            .font(.system(size:18, weight: .medium))
-                            .overlay(RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(red: 0.47, green: 0.74, blue: 0.33), lineWidth: 2))
-                    }
-                    .padding(.horizontal, 20)
-                    
-                    //Phone Number
-                    HStack {
-                        Image(systemName: "phone.fill")
-                            .foregroundColor(Color(red: 0.47, green: 0.74, blue: 0.33))
-                        TextField("Enter your phone number", text: $triageViewModel.phoneNumber)
-                            .padding()
-                            .font(.system(size: 18, weight: .medium))
-                            .keyboardType(.phonePad)
-                            .overlay(RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(red:0.47, green: 0.74, blue: 0.33), lineWidth: 2))
-                    }
-                    .padding(.horizontal, 20)
-                    //Error
-                    if let errorMessage = triageViewModel.errorMessage {
-                        Text(errorMessage)
-                            .foregroundColor(.red)
-                            .font(.subheadline)
-                            .padding(.horizontal)
-                    }
-                    
-                    //Submit and start Triage
-                    Button(action: {
-                        triageViewModel.createUser()
-                    }) {
-                        Text(triageViewModel.isLoading ? "Creating User..." : "Create User")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(triageViewModel.isLoading ? Color.gray : Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
-                    }
-                    .disabled(triageViewModel.isLoading)
-                    .padding(.horizontal)
-                }
-            }
-                else if triageViewModel.triageStep == 1 && (triageViewModel.userID != nil) {
-                    // Age Input
-                    TextField("Enter your age", text: $triageViewModel.age)
-                        .keyboardType(.numberPad)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                    
-                    // Sex Picker
-                    Picker("Select your sex", selection: $triageViewModel.sex) {
-                        Text("Male").tag("male" as String?)
-                        Text("Female").tag("female" as String?)
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
+                // Email input
+                TextField("Enter your email", text: $triageViewModel.email)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocapitalization(.none)
                     .padding()
-                    
-                    // Description Box
-                    Text("Describe your symptoms:")
-                        .font(.headline)
-                        .padding(.top)
-                    
-                    TextEditor(text: $triageViewModel.desc)
-                        .frame(height: 150)
-                        .padding()
-                        .border(Color.gray, width:1)
-                        .cornerRadius(8)
+
+                //Phone Number
+                TextField("Enter your phone number", text: $triageViewModel.phoneNumber)
+                    .keyboardType(.phonePad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+
+                //Error
+                if let errorMessage = triageViewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.subheadline)
                         .padding(.horizontal)
-                    
-                    //Error handling for empty fields
-                    if selectedSex == nil || ageInput.isEmpty {
-                        Text("Please fill in all fields")
-                            .foregroundColor(.red)
-                    }
-                    
-                    // Start triage button
+                }
+
+                //Submit and start Triage
+                Button(action: {
+                    triageViewModel.createUser()
+                }) {
+                    Text(triageViewModel.isLoading ? "Creating User..." : "Create User")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(triageViewModel.isLoading ? Color.gray : Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .disabled(triageViewModel.isLoading)
+                .padding(.horizontal)
+            }
+
+            else if triageViewModel.triageStep == 1 && (triageViewModel.userID != nil) {
+                // Age Input
+                TextField("Enter your age", text: $triageViewModel.age)
+                    .keyboardType(.numberPad)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
+
+                // Sex Picker
+                Picker("Select your sex", selection: $triageViewModel.sex) {
+                    Text("Male").tag("male" as String?)
+                    Text("Female").tag("female" as String?)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+
+                // Description Box
+                Text("Describe your symptoms:")
+                    .font(.headline)
+                    .padding(.top)
+
+                TextEditor(text: $triageViewModel.desc)
+                    .frame(height: 150)
+                    .padding()
+                    .border(Color.gray, width:1)
+                    .cornerRadius(8)
+                    .padding(.horizontal)
+
+                //Error handling for empty fields
+                if selectedSex == nil || ageInput.isEmpty {
+                    Text("Please fill in all fields")
+                        .foregroundColor(.red)
+                }
+
+                // Start triage button
+                Button(action: {
+                    //Set the age and sex in the ViewModel
+                        triageViewModel.beginTriage()
+                }) {
+                    Text(triageViewModel.isLoading ? "Gathering symptoms..." : "Start triage")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(triageViewModel.isLoading ? Color.gray : Color.green)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+                .disabled(triageViewModel.isLoading)
+                .padding(.horizontal)
+            }
+
+            else if triageViewModel.triageStep == 2 && (triageViewModel.userID != nil) {
+                Text("\(triageViewModel.currQuestion?.text ?? " ")")
+
+                if (triageViewModel.currQuestion?.type == "single") {
+                    Picker("Select your answer", selection: $triageViewModel.currQuestionAnswer) {
+                        Text("Yes").tag("present" as String)
+                        Text("No").tag("absent" as String)
+                        Text("I don't know").tag("unkown" as String)
+                    }.pickerStyle(.segmented)
+
                     Button(action: {
                         //Set the age and sex in the ViewModel
-                        triageViewModel.beginTriage()
+                        triageViewModel.addEvidence(e: Evidence(id: triageViewModel.currQuestion?.items[0].id ?? " ", choice_id: triageViewModel.currQuestionAnswer, source: "initial"))
+                        triageViewModel.submitDiagnosis()
                     }) {
-                        Text(triageViewModel.isLoading ? "Gathering symptoms..." : "Start triage")
+                        Text("Submit")
                             .frame(maxWidth: .infinity)
                             .padding()
                             .background(triageViewModel.isLoading ? Color.gray : Color.green)
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
-                    .disabled(triageViewModel.isLoading)
-                    .padding(.horizontal)
+
                 }
-                
-                else if triageViewModel.triageStep == 2 && (triageViewModel.userID != nil) {
-                    Text("Profile")
-                    Text("age: \(triageViewModel.age) sex: \(triageViewModel.sex)")
-                    
-                    if let evidence = triageViewModel.evidence {
-                        Text("Evidence: \(evidence)")
-                    } else{
-                        Text("No evidence collected")
+                else if (triageViewModel.currQuestion?.type == "group_single") {
+                    Picker("Select your answer", selection: $triageViewModel.currQuestionAnswer) {
+                        ForEach(triageViewModel.currQuestion?.items.indices ?? 0..<0, id: \.self) { index in
+                            if let item = triageViewModel.currQuestion?.items[index] {
+                                Text("\(item.name)").tag(item.id as String)
+                            }
+                        }
                     }
+
+                    Button(action: {
+                        //Set the age and sex in the ViewModel
+                        print("\(triageViewModel.currQuestionAnswer)")
+                        triageViewModel.addEvidence(e: Evidence(id: triageViewModel.currQuestionAnswer, choice_id: "present", source: "initial"))
+                        triageViewModel.submitDiagnosis()
+                    }) {
+                        Text("Submit")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(triageViewModel.isLoading ? Color.gray : Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
                 }
-                Spacer()
+                else {
+                    ForEach(triageViewModel.currQuestion?.items.indices ?? 0..<0, id: \.self) { index in
+                        if let item = triageViewModel.currQuestion?.items[index] {
+                            Text("\(item.name)")
+                            Picker("Select your answer", selection: $triageViewModel.currQuestionAnswer) {
+                                Text("Yes").tag("present" as String)
+                                Text("No").tag("absent" as String)
+                                Text("I don't know").tag("unkown" as String)
+                            }.pickerStyle(.segmented)
+
+                            Button(action: {
+                                triageViewModel.addEvidence(e: Evidence(id: triageViewModel.currQuestion?.items[0].id ?? " ", choice_id: triageViewModel.currQuestionAnswer, source: "initial"))
+                            }) {
+                                Text("Submit")
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(triageViewModel.isLoading ? Color.gray : Color.green)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
+                    Button(action: {
+                        triageViewModel.submitDiagnosis()
+                    }) {
+                        Text("Submit")
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(triageViewModel.isLoading ? Color.gray : Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
+                }
             }
+            Spacer()
         }
     }
-
+}

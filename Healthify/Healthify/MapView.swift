@@ -19,9 +19,11 @@ struct Location: Identifiable {
 struct MapView: View {
     
     // An array of preloaded locations
-    @State private var locations = [
+    @State private var urgentCares = [
         Location(name: "Central Park", coordinate: CLLocationCoordinate2D(latitude: 40.785091, longitude: -73.968285)),
-        Location(name: "Statue of Liberty", coordinate: CLLocationCoordinate2D(latitude: 40.689247, longitude: -74.044502)),
+        Location(name: "Statue of Liberty", coordinate: CLLocationCoordinate2D(latitude: 40.689247, longitude: -74.044502))
+        ]
+    @State private var emergencyRooms = [
         Location(name: "Times Square", coordinate: CLLocationCoordinate2D(latitude: 40.758896, longitude: -73.985130))
         
     ]
@@ -34,6 +36,9 @@ struct MapView: View {
     
     var body: some View {
         VStack{
+            /*Picker("Select option", selection: $selectedOption) {
+                Text("Urgent Care").tag(
+            }*/
             Spacer()
             
             ZStack{
@@ -43,7 +48,7 @@ struct MapView: View {
                     .shadow(radius: 10)
                     .padding()
                 
-                Map(coordinateRegion: $region, annotationItems: locations) { location in
+                Map(coordinateRegion: $region, annotationItems: urgentCares) { location in
                     MapMarker(coordinate: location.coordinate, tint: .red)
                 }
                 .cornerRadius(12)
