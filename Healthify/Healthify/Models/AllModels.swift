@@ -4,7 +4,6 @@
 //
 //  Created by Guest Damon on 8/7/24.
 //
-
 import Foundation
 import SwiftUI
 
@@ -36,7 +35,7 @@ struct Evidence: Codable{
     var id: String
     var name: String?
     var choice_id: String
-    var source: String
+    var source: String?
 }
 
 struct Mention: Codable {
@@ -82,4 +81,21 @@ struct QuestionsAPIResponse: Codable {
     var should_stop: Bool?
     var has_emergency_evidence: Bool?
     var extras: [String: String]? = [:]
+}
+
+// ---------------------
+struct Observation: Codable {
+    var id: String?
+    var name: String?
+    var common_name: String?
+    var seriousnss: String?
+    var is_emergency: Bool?
+}
+
+struct TriageAPIResponse: Codable {
+    var triage_level: String
+    var serious: [Observation]?
+    var root_cause: String
+    var teleconsultation_applicable: Bool?
+    
 }
