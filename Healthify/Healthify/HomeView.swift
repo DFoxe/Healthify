@@ -19,7 +19,6 @@ struct HomeView: View {
                         Image(systemName: "house.fill")
                         Text("Dashboard")
                     }
-                
                 TriageView()
                     .tabItem {
                         Label("Diagnostic", systemImage: "heart.text.square")

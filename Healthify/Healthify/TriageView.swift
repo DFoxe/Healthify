@@ -34,7 +34,7 @@ struct TriageView: View {
 
     var body: some View {
         VStack(spacing: 20 ) {
-
+            
             //1: get intial information
             if triageViewModel.triageStep == 0 {
                 // Email input
@@ -42,13 +42,13 @@ struct TriageView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .autocapitalization(.none)
                     .padding()
-
+                
                 //Phone Number
                 TextField("Enter your phone number", text: $triageViewModel.phoneNumber)
                     .keyboardType(.phonePad)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
-
+                
                 //Error
                 if let errorMessage = triageViewModel.errorMessage {
                     Text(errorMessage)
@@ -56,7 +56,7 @@ struct TriageView: View {
                         .font(.subheadline)
                         .padding(.horizontal)
                 }
-
+                
                 //Submit and start Triage
                 Button(action: {
                     triageViewModel.createUser()
@@ -71,70 +71,81 @@ struct TriageView: View {
                 .disabled(triageViewModel.isLoading)
                 .padding(.horizontal)
             }
-
+            
             else if triageViewModel.triageStep == 1 && (triageViewModel.userID != nil) {
-
+                
                 // Age Input
-                TextField("Enter your age", text: $triageViewModel.age)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                VStack(spacing: 20) {
+                    TextField("Enter your age", text: $ageInput)
+                        .keyboardType(.numberPad)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding()
+                    
+                    if let age = Int(ageInput), age < 18 {
+                        Text("You must be at least 18 years old to use the triage.")
+                            .foregroundColor(.red)
+                            .padding(.bottom, 5)
+                    }
+                    
+                    // Sex Picker
+                    Picker("Select your sex", selection: $triageViewModel.sex) {
+                        Text("Male").tag("male" as String?)
+                        Text("Female").tag("female" as String?)
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                     .padding()
-
-                // Sex Picker
-                Picker("Select your sex", selection: $triageViewModel.sex) {
-                    Text("Male").tag("male" as String?)
-                    Text("Female").tag("female" as String?)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding()
-
-                // Description Box
-                Text("Describe your symptoms:")
-                    .font(.headline)
-                    .padding(.top)
-
-                TextEditor(text: $triageViewModel.desc)
-                    .frame(height: 150)
-                    .padding()
-                    .border(Color.gray, width:1)
-                    .cornerRadius(8)
-                    .padding(.horizontal)
-
-                    HStack {
-                        Picker("Symptom 1", selection: $triageViewModel.initialEvidence1) {
-                            ForEach(symptoms, id: \.self) { symptom in
-                                Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
-                            }
-                        }
-                        Picker("Symptom 2", selection: $triageViewModel.initialEvidence2) {
-                            ForEach(symptoms, id: \.self) { symptom in
-                                Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
-                            }
-                        }
-                        Picker("Symptom 3", selection: $triageViewModel.initialEvidence3) {
-                            ForEach(symptoms, id: \.self) { symptom in
-                                Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
-                            }
+                    
+                    // Description Box
+                    Text("Describe your symptoms:")
+                        .font(.headline)
+                        .padding(.top)
+                    
+                    TextEditor(text: $triageViewModel.desc)
+                        .frame(height: 150)
+                        .padding()
+                        .border(Color.gray, width:1)
+                        .cornerRadius(8)
+                        .padding(.horizontal)
+                    
+                HStack {
+                    Picker("Symptom 1", selection: $triageViewModel.initialEvidence1) {
+                        ForEach(symptoms, id: \.self) { symptom in
+                            Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
                         }
                     }
-
-
+                    Picker("Symptom 2", selection: $triageViewModel.initialEvidence2) {
+                        ForEach(symptoms, id: \.self) { symptom in
+                            Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
+                        }
+                    }
+                    Picker("Symptom 3", selection: $triageViewModel.initialEvidence3) {
+                        ForEach(symptoms, id: \.self) { symptom in
+                            Text(symptom.name).tag(symptom.symptom_id)// Customize this to match your object properties
+                        }
+                    }
+                }
+                
+                
                 // Start triage button
                 Button(action: {
                     //Set the age and sex in the ViewModel
+                    if let age = Int(ageInput), age >= 18 {
+                        triageViewModel.age = ageInput
                         triageViewModel.beginTriage()
+                    }
                 }) {
-                    Text(triageViewModel.age == "" ?  "Please complete all fields" : "Start triage")
+                    Text(ageInput.isEmpty || Int(ageInput) == nil || Int(ageInput) ?? 0 < 18
+                         ?"Please complete all fields" : "Start triage")
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(triageViewModel.age == "" ? Color.gray : Color.green)
+                        .background(ageInput.isEmpty || Int(ageInput) == nil || Int(ageInput) ?? 0 < 18 ? Color.gray : Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
-                .disabled(triageViewModel.age == "")
+                .disabled(ageInput.isEmpty || Int(ageInput) == nil || Int(ageInput) ?? 0 < 18)
                 .padding(.horizontal)
             }
-
+        }
             else if triageViewModel.triageStep == 2 && (triageViewModel.userID != nil) {
 
                 if(triageViewModel.isLoading) {
