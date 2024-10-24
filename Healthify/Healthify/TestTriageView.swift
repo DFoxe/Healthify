@@ -26,7 +26,10 @@ struct TestTriageView: View {
     @State private var selectedResponse: String? = nil
     @State private var resultPage: String? = nil // For navigation to result page
     @State private var isSubmitPressed: Bool = false
-    
+    @State private var selectedResponse1: String? = nil
+    @State private var selectedResponse2: String? = nil
+    @State private var selectedResponse3: String? = nil
+
     private var symptoms = [
         Symptom(symptom_id: "s_98", name: "Fever"),
         Symptom(symptom_id: "s_2100", name: "Fatigue"),
@@ -55,15 +58,15 @@ struct TestTriageView: View {
                             Button(action: {
                                 currentStep += 1
                             }) {
-                                Image(systemName: "heart.fill") // Using the default heart image
+                                Image("Logo") // Using the default Logo
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 150, height: 150) // Adjust the size as needed
+                                    .frame(width: 300, height: 300) // Adjust the size as needed
                                     .foregroundColor(.red)
                                     .padding()
                             }
                             
-                            // Bouncing arrow pointing at the heart
+                            // Bouncing arrow pointing at the Logo
                             Image(systemName: "arrow.up")
                                 .resizable()
                                 .scaledToFit()
@@ -169,10 +172,10 @@ struct TestTriageView: View {
                         VStack {
                             Spacer()
                             
-                            Image(systemName: "heart.fill")
+                            Image("Logo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 100, height: 100)
+                                .frame(width: 250, height: 250)
                                 .foregroundColor(.red)
                                 .padding(.bottom, 10)
                             
@@ -182,7 +185,7 @@ struct TestTriageView: View {
                                     .foregroundColor(Color.gray)
                                     .padding(.top)
                                 
-                                Text("Is your headache mild?")
+                                Text("Is your headache sudden and severe?")
                                     .font(.title2)
                                     .bold()
                                     .foregroundColor(Color.black)
@@ -218,16 +221,139 @@ struct TestTriageView: View {
                                 }
                                 .padding(.horizontal, 20)
                                 .padding(.bottom, 20)
+                                Button("Next") {
+                                    currentStep += 1
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                            }
+                                .padding()
+                            }
+                        }
+                    
+                
+                    else if currentStep == 3 {
+                        VStack {
+                            Spacer()
+                            
+                            Image("Logo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 250, height: 250)
+                                .foregroundColor(.red)
+                                .padding(.bottom, 10)
+                            
+                            VStack {
+                                Text("Select an answer")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray)
+                                    .padding(.top)
                                 
+                                Text("Are you experiencing other symptoms like confusion, vision problems, or difficulty speaking?")
+                                    .font(.title2)
+                                    .bold()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical)
+                                
+                                VStack(spacing: 20) {
+                                    Button("Yes") {
+                                        selectedResponse2 = "Yes"
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(selectedResponse2 == "Yes" ? Color.green : Color.gray.opacity(0.2))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("No") {
+                                        selectedResponse2 = "No"
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(selectedResponse2 == "No" ? Color.green : Color.gray.opacity(0.2))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    
+                                    Button("I don't know") {
+                                        selectedResponse2 = "I don't know"
+                                    }
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(selectedResponse2 == "I don't know" ? Color.green : Color.gray.opacity(0.2))
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                }
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 20)
+                                Button("Next") {
+                                    currentStep += 1
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                            }
+                            .padding()
+                        }
+                    }
+                                else if currentStep == 4 {
+                                    VStack {
+                                        Spacer()
+                                    
+                                    Image("Logo")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 250, height: 250)
+                                        .foregroundColor(.red)
+                                        .padding(.bottom, 10)
+                                    
+                                    VStack {
+                                        Text("Select an answer")
+                                            .font(.footnote)
+                                            .foregroundColor(Color.gray)
+                                            .padding(.top)
+                                        
+                                        Text("Is the headache getting progressively worse, despite pain relief?")
+                                            .font(.title2)
+                                            .bold()
+                                            .foregroundColor(Color.black)
+                                            .padding(.vertical)
+                                        
+                                        VStack(spacing: 20) {
+                                            Button("Yes") {
+                                                selectedResponse3 = "Yes"
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(selectedResponse3 == "Yes" ? Color.green : Color.gray.opacity(0.2))
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                            
+                                            Button("No") {
+                                                selectedResponse3 = "No"
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(selectedResponse3 == "No" ? Color.green : Color.gray.opacity(0.2))
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                            
+                                            Button("I don't know") {
+                                                selectedResponse3 = "I don't know"
+                                            }
+                                            .frame(maxWidth: .infinity)
+                                            .padding()
+                                            .background(selectedResponse3 == "I don't know" ? Color.green : Color.gray.opacity(0.2))
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                        }
                                 // Submit Button
                                 Button(action: {
-                                    if selectedResponse == "Yes" {
-                                        resultPage = "Emergency"
-                                    } else if selectedResponse == "No" {
-                                        resultPage = "Consultation"
-                                    } else {
-                                        resultPage = "Self Care"
-                                    }
+                                    determineResult()
                                     isSubmitPressed = true
                                 }) {
                                     Text("Submit")
@@ -252,10 +378,14 @@ struct TestTriageView: View {
                             .shadow(radius: 10)
                             
                             Spacer()
+                                
                         }
                     }
+                                
                 }
+                
                 .padding()
+                        
             }
         }
     }
@@ -265,10 +395,18 @@ struct TestTriageView: View {
         let symptom_id: String
         let name: String
     }
-    
+    private func determineResult() {
+        if selectedResponse1 == "Yes" || selectedResponse2 == "Yes" {
+            resultPage = "Emergency"
+        } else if selectedResponse3 == "Yes" {
+            resultPage = "Consultation"
+        } else {
+            resultPage = "Self Care"
+        }
+    }
     struct ResultPage: View {
         let result: String
-        
+
         var body: some View {
             ZStack {
                 backgroundColor(for: result)
@@ -290,13 +428,17 @@ struct TestTriageView: View {
                             .foregroundColor(.white)
                             .padding()
                         
-                        Button("Find Nearest Emergency Rooms") {
-                            // Navigate to MapView for emergency rooms
+                        // Navigate to MapView for emergency rooms
+                        NavigationLink(destination: MapView().onAppear {
+                            // Optionally, preselect the emergency room category here
+                        }) {
+                            Text("Find Nearest Emergency Rooms")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .foregroundColor(.red)
                         }
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .foregroundColor(.red)
                         .padding(.bottom, 10)
                         
                         Button("Call 911") {
@@ -319,13 +461,17 @@ struct TestTriageView: View {
                             .foregroundColor(.white)
                             .padding()
                         
-                        Button("Find Nearby Hospitals") {
-                            // Navigate to MapView for hospitals
+                        // Navigate to MapView for urgent cares
+                        NavigationLink(destination: MapView().onAppear {
+                            // Optionally, preselect the urgent care category here
+                        }) {
+                            Text("Find Nearby Hospitals")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.white)
+                                .cornerRadius(10)
+                                .foregroundColor(.blue)
                         }
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        .foregroundColor(.blue)
                     } else {
                         Image(systemName: "bandage.fill")
                             .resizable()

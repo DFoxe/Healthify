@@ -79,7 +79,6 @@ struct TriageView: View {
                                         bouncingAnimation = 10
                                     }
                                 }
-                            Spacer()
                         }
                     }
                     else if triageViewModel.triageStep == 1 && (triageViewModel.userID != nil) {

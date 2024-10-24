@@ -19,11 +19,11 @@ struct HomeView: View {
                         Image(systemName: "house.fill")
                         Text("Dashboard")
                     }
+               
                 TestTriageView()
                     .tabItem {
                         Label("Diagnostic", systemImage: "heart.text.square")
                     }
-                
                 /* TriageView()
                  .tabItem {
                  Label("Diagnostic", systemImage: "heart.text.square")
