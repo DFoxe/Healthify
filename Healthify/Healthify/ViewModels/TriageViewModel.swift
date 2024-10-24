@@ -28,8 +28,10 @@ class TriageViewModel: ObservableObject {
     @Published var currQuestionAnswer: String = "unkown"
     @Published var answers: [Int: String] = [:]
     @Published var finalTriage: String? = nil
-
-
+    private var appid: String = ""
+    private var appkey: String = ""
+    
+    
     var cancellables = Set<AnyCancellable>()
 
 
@@ -41,8 +43,8 @@ class TriageViewModel: ObservableObject {
 
         // Add headers
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("a7b7c8ec", forHTTPHeaderField: "App-Id")
-        request.setValue("1ec19f8845900b07b739d27e211cbe14", forHTTPHeaderField: "App-Key")
+        request.setValue(self.appid, forHTTPHeaderField: "App-Id")
+        request.setValue(self.appkey, forHTTPHeaderField: "App-Key")
         request.setValue(self.userID?.uuidString, forHTTPHeaderField: "Interview-Id")
 
         let body: [String: Any] = [
@@ -125,8 +127,8 @@ class TriageViewModel: ObservableObject {
 
                 // Add headers
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.setValue("a7b7c8ec", forHTTPHeaderField: "App-Id")
-                request.setValue("1ec19f8845900b07b739d27e211cbe14", forHTTPHeaderField: "App-Key")
+                request.setValue(self.appid, forHTTPHeaderField: "App-Id")
+                request.setValue(self.appkey, forHTTPHeaderField: "App-Key")
                 request.setValue(self.userID?.uuidString, forHTTPHeaderField: "Interview-Id")
 
                 let body: [String: Any] = [
@@ -195,8 +197,8 @@ class TriageViewModel: ObservableObject {
 
            // Add headers
            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-           request.setValue("a7b7c8ec", forHTTPHeaderField: "App-Id")
-           request.setValue("1ec19f8845900b07b739d27e211cbe14", forHTTPHeaderField: "App-Key")
+            request.setValue(self.appid, forHTTPHeaderField: "App-Id")
+            request.setValue(self.appkey, forHTTPHeaderField: "App-Key")
            request.setValue(self.userID?.uuidString, forHTTPHeaderField: "Interview-Id")
 
            // Create the JSON body

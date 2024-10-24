@@ -23,21 +23,24 @@ struct MapView: View {
     
     // An array of preloaded locations
     @State private var urgentCares = [
-        Location(name: "Central Park", coordinate: CLLocationCoordinate2D(latitude: 40.785091, longitude: -73.968285)),
-        Location(name: "Statue of Liberty", coordinate: CLLocationCoordinate2D(latitude: 40.689247, longitude: -74.044502))
+        Location(name: "CityMD West 125th", coordinate: CLLocationCoordinate2D(latitude: 40.809010, longitude: -73.948402)),
+        Location(name: "CityMD West 104th", coordinate: CLLocationCoordinate2D(latitude: 40.799480, longitude: -73.967941)),
+        Location(name: "+MEDRITE Manhattanville", coordinate: CLLocationCoordinate2D(latitude: 40.8133592, longitude: -73.9560285))
     ]
     
     @State private var emergencyRooms = [
-        Location(name: "Times Square", coordinate: CLLocationCoordinate2D(latitude: 40.758896, longitude: -73.985130))
+        Location(name: "Mount Sinai Hospital", coordinate: CLLocationCoordinate2D(latitude: 40.790310, longitude: -73.952103)),
+        Location(name: "Mount Sinai MorningSide", coordinate: CLLocationCoordinate2D(latitude: 40.804660, longitude: -73.961670)),
+        Location(name: "Harlem Hospital Center", coordinate: CLLocationCoordinate2D(latitude: 43.091061, longitude: -75.661591))
+        
     ]
-    
     @State private var selected = "urgentCares"
     
     
     
     // Region to center the map on (New York in this case)
     @State private var region = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 40.758896, longitude: -73.985130), // Times Square as the center
+        center: CLLocationCoordinate2D(latitude: 40.808984, longitude: -73.948574), // Harlem as the center
         span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1) // Zoom level
     )
     

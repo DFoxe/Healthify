@@ -19,22 +19,15 @@ struct HomeView: View {
                         Image(systemName: "house.fill")
                         Text("Dashboard")
                     }
-                TriageView()
+                TestTriageView()
                     .tabItem {
                         Label("Diagnostic", systemImage: "heart.text.square")
                     }
                 
-                MedicationView()
-                    .tabItem {
-                        Image(systemName: "pills.fill")
-                        Text("Medication")
-                    }
-                
-                /*AppointmentView()
-                    .tabItem {
-                        Image(systemName: "calendar")
-                        Text("Appointments")
-                         }*/
+                /* TriageView()
+                 .tabItem {
+                 Label("Diagnostic", systemImage: "heart.text.square")
+                 } */
                 
                 MapView()
                     .tabItem {

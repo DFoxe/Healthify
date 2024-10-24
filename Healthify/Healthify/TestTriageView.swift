@@ -25,6 +25,7 @@ struct TestTriageView: View {
     // State to track the response for the mock question
     @State private var selectedResponse: String? = nil
     @State private var resultPage: String? = nil // For navigation to result page
+    @State private var isSubmitPressed: Bool = false
     
     private var symptoms = [
         Symptom(symptom_id: "s_98", name: "Fever"),
@@ -165,19 +166,35 @@ struct TestTriageView: View {
                     
                     // Step 3: Mock Question
                     else if currentStep == 2 {
-                        ScrollView {
-                            VStack(spacing: 20) {
-                                Text("Is your headache mild?")
-                                    .font(.headline)
-                                    .padding()
+                        VStack {
+                            Spacer()
+                            
+                            Image(systemName: "heart.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .foregroundColor(.red)
+                                .padding(.bottom, 10)
+                            
+                            VStack {
+                                Text("Select an answer")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray)
+                                    .padding(.top)
                                 
-                                HStack {
+                                Text("Is your headache mild?")
+                                    .font(.title2)
+                                    .bold()
+                                    .foregroundColor(Color.black)
+                                    .padding(.vertical)
+                                
+                                VStack(spacing: 20) {
                                     Button("Yes") {
                                         selectedResponse = "Yes"
                                     }
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(selectedResponse == "Yes" ? Color.green : Color.gray)
+                                    .background(selectedResponse == "Yes" ? Color.green : Color.gray.opacity(0.2))
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                     
@@ -186,7 +203,7 @@ struct TestTriageView: View {
                                     }
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(selectedResponse == "No" ? Color.green : Color.gray)
+                                    .background(selectedResponse == "No" ? Color.green : Color.gray.opacity(0.2))
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                     
@@ -195,15 +212,15 @@ struct TestTriageView: View {
                                     }
                                     .frame(maxWidth: .infinity)
                                     .padding()
-                                    .background(selectedResponse == "I don't know" ? Color.green : Color.gray)
+                                    .background(selectedResponse == "I don't know" ? Color.green : Color.gray.opacity(0.2))
                                     .foregroundColor(.white)
                                     .cornerRadius(10)
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 20)
                                 
                                 // Submit Button
                                 Button(action: {
-                                    // Determine the result page based on the selected response
                                     if selectedResponse == "Yes" {
                                         resultPage = "Emergency"
                                     } else if selectedResponse == "No" {
@@ -211,6 +228,7 @@ struct TestTriageView: View {
                                     } else {
                                         resultPage = "Self Care"
                                     }
+                                    isSubmitPressed = true
                                 }) {
                                     Text("Submit")
                                         .frame(maxWidth: .infinity)
@@ -219,23 +237,22 @@ struct TestTriageView: View {
                                         .foregroundColor(.white)
                                         .cornerRadius(10)
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.bottom, 20)
+                                
+                                NavigationLink(destination: ResultPage(result: resultPage ?? "Self Care")
+                                                .navigationBarBackButtonHidden(true), isActive: $isSubmitPressed) {
+                                    EmptyView()
+                                }
                             }
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white.opacity(0.9))
+                            .cornerRadius(20)
+                            .padding(.horizontal, 20)
+                            .shadow(radius: 10)
+                            
+                            Spacer()
                         }
-                        .navigationTitle("Question")
-                    }
-                    
-                    // Result Page
-                    if let resultPage = resultPage {
-                        NavigationLink(destination: ResultPage(result: resultPage)) {
-                            Text("Go to Result Page")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.orange)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        .padding()
                     }
                 }
                 .padding()
@@ -253,21 +270,99 @@ struct TestTriageView: View {
         let result: String
         
         var body: some View {
-            VStack {
-                Text("Your Triage Result")
-                    .font(.largeTitle)
-                    .padding()
+            ZStack {
+                backgroundColor(for: result)
+                    .edgesIgnoringSafeArea(.all)
                 
-                Text(result)
-                    .font(.title)
-                    .padding()
-                
-                // Additional content based on result can go here
+                VStack {
+                    Spacer()
+                    
+                    if result == "Emergency" {
+                        Image(systemName: "exclamationmark.triangle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 20)
+                        
+                        Text("Emergency")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                        Button("Find Nearest Emergency Rooms") {
+                            // Navigate to MapView for emergency rooms
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .foregroundColor(.red)
+                        .padding(.bottom, 10)
+                        
+                        Button("Call 911") {
+                            // Trigger phone call to 911
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .foregroundColor(.red)
+                    } else if result == "Consultation" {
+                        Image(systemName: "clock.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 20)
+                        
+                        Text("Consultation")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                            .padding()
+                        
+                        Button("Find Nearby Hospitals") {
+                            // Navigate to MapView for hospitals
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        .foregroundColor(.blue)
+                    } else {
+                        Image(systemName: "bandage.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 150, height: 150)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 20)
+                        
+                        Text("Self Care")
+                            .font(.largeTitle)
+                            .foregroundColor(.black)
+                            .padding()
+                    }
+                    
+                    Spacer()
+                }
             }
             .navigationTitle("Result")
+            .navigationBarBackButtonHidden(true)
+        }
+        
+        // Function to determine the background color
+        private func backgroundColor(for result: String) -> Color {
+            switch result {
+            case "Emergency":
+                return Color.red.opacity(0.7)
+            case "Consultation":
+                return Color.blue.opacity(0.3)
+            case "Self Care":
+                return Color.green.opacity(0.3)
+            default:
+                return Color.gray.opacity(0.3)
+            }
         }
     }
 }
+
 struct TestTriageView_Previews: PreviewProvider {
     static var previews: some View {
         TestTriageView()
