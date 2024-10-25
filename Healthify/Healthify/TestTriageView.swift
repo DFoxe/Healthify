@@ -15,9 +15,9 @@ struct TestTriageView: View {
     @State private var ageInput: String = ""
     @State private var selectedSex: String? = "male"
     @State private var descriptionText: String = ""
-    @State private var symptom1: String = "s_98"
-    @State private var symptom2: String = "s_2100"
-    @State private var symptom3: String = "s_102"
+    @State private var symptom1: String = "s_000"
+    @State private var symptom2: String = "s_000"
+    @State private var symptom3: String = "s_000"
     
     // State to track current step
     @State private var currentStep: Int = 0
@@ -190,6 +190,9 @@ struct TestTriageView: View {
                                     .bold()
                                     .foregroundColor(Color.black)
                                     .padding(.vertical)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .minimumScaleFactor(0.5)
                                 
                                 VStack(spacing: 20) {
                                     Button("Yes") {
@@ -231,6 +234,13 @@ struct TestTriageView: View {
                                 .cornerRadius(10)
                             }
                                 .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.white.opacity(0.9))
+                                .cornerRadius(20)
+                                .padding(.horizontal, 20)
+                                .shadow(radius: 10)
+                                
+                                Spacer()
                             }
                         }
                     
@@ -257,6 +267,9 @@ struct TestTriageView: View {
                                     .bold()
                                     .foregroundColor(Color.black)
                                     .padding(.vertical)
+                                    .multilineTextAlignment(.center)
+                                    .lineLimit(nil)
+                                    .minimumScaleFactor(0.5)
                                 
                                 VStack(spacing: 20) {
                                     Button("Yes") {
@@ -298,8 +311,16 @@ struct TestTriageView: View {
                                 .cornerRadius(10)
                             }
                             .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.white.opacity(0.9))
+                            .cornerRadius(20)
+                            .padding(.horizontal, 20)
+                            .shadow(radius: 10)
+                            
+                            Spacer()
                         }
                     }
+                    
                                 else if currentStep == 4 {
                                     VStack {
                                         Spacer()
@@ -322,6 +343,9 @@ struct TestTriageView: View {
                                             .bold()
                                             .foregroundColor(Color.black)
                                             .padding(.vertical)
+                                            .multilineTextAlignment(.center)
+                                            .lineLimit(nil)
+                                            .minimumScaleFactor(0.5)
                                         
                                         VStack(spacing: 20) {
                                             Button("Yes") {
